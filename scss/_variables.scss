@@ -1,0 +1,13 @@
+// GRAY 
+$primary-color: #212121;
+$secondry-color: #ff652f;
+$text-color : #fff;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@mixin transition-ease{
+    transition: all 0.3s ease-in;
+}
