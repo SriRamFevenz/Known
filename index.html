@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #c03535, #caa202, #53c220);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            min-width: 400px;
+            height: 400px;
+            border-radius: 10px;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .head {
+            font-size: 5rem;
+            text-align: center;
+            color: #333;
+        }
+
+        .input,
+        .head,
+        .btn,
+        .output {
+            width: 100%;
+            line-height: 2;
+        }
+
+        .input input {
+            width: 100%;
+            height: 50px;
+            margin-bottom: 1rem;
+            outline: 0;
+            border: 1px solid #2bff00;
+            padding: 0 1rem;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+
+        .input input:focus {
+            border: 1px solid #00ccff;
+        }
+
+        .btn button {
+            width: 100%;
+            height: 50px;
+            margin-bottom: 1rem;
+            outline: 0;
+            border: 1px solid #ccc;
+            padding: 0 1rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            background-color: #222;
+            color: #fff;
+            transition: .1ms ease-in-out;
+        }
+
+        .btn button:hover {
+            background-color: #333;
+        }
+
+        .btn button:active {
+            transform: scale(.98);
+        }
+
+        .output {
+            text-align: center;
+            color: #222;
+            height: 50px;
+            background-color: #ffff;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+        }
+
+        .normal {
+            background-color: yellow;
+            color: #222;
+        }
+
+        .danger {
+            background-color: #e03535;
+            color: #fff;
+        }
+
+        .low {
+            background-color: blue;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="head">BMI</div>
+        <div class="input height">
+            <input type="number" class="heightInput" placeholder="Enter the height..">
+        </div>
+        <div class="input weight">
+            <input type="number" class="weightInput" placeholder="Enter the weight..">
+        </div>
+        <div class="btn">
+            <button class="calculte">Calculate</button>
+        </div>
+        <div class="output">
+            21.44
+        </div>
+    </div>
+
+    <script>
+        const btnEl = document.querySelector('.calculte'),
+            heightEl = document.querySelector('.heightInput'),
+            weightEl = document.querySelector('.weightInput'),
+            outputEl = document.querySelector('.output');
+
+        btnEl.addEventListener('click', () => {
+            let height = heightEl.value,
+                weight = weightEl.value;
+
+            let result = (weight / (height * height)).toFixed(2);
+
+            if (result > 18 && result < 24) {
+                outputEl.classList.add('normal');
+                outputEl.classList.remove('danger');
+                outputEl.classList.remove('low');
+                outputEl.innerHTML = result + " Normal";
+            } else if (result > 25) {
+                outputEl.classList.remove('normal');
+                outputEl.classList.add('danger');
+                outputEl.classList.remove('low');
+                outputEl.innerHTML = result + " High";
+            } else if (result < 17) {
+                outputEl.classList.remove('normal');
+                outputEl.classList.remove('danger');
+                outputEl.classList.add('low');
+                outputEl.innerHTML = result + " Low";
+            }
+            console.log(height);
+            console.log(weight);
+            console.log(result);
+        });
+
+    </script>
+</body>
+
+</html>
